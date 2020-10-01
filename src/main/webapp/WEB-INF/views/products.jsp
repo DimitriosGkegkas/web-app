@@ -3,6 +3,7 @@
 <script type="text/javascript">
 function over(id,fpa) {
 	p=parseFloat(document.getElementById(id).innerHTML)*parseFloat(fpa);
+	p=p.toFixed(2);
 	s=p.toString();
 	document.getElementById(id).innerHTML=s;
 }
@@ -59,7 +60,7 @@ function addToBasketAjax(id){
 				<div class="card-body">
 					<h5 class="card-title" id="${item.id}"
 						onmouseout="out(${item.id},${item.price})"
-						onmouseover="over(${item.id},${fpa})">${item.price}</h5>
+						onmouseover="over(${item.id},${1+basket.getTax()})">${item.price}</h5>
 					<p class="card-text">${item.name}</p>
 					<a class="btn btn-primary" onClick="addToBasketAjax(${item.id})">Add To Basket</a>
 				</div>

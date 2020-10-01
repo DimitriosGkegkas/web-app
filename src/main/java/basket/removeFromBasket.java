@@ -40,27 +40,7 @@ public class removeFromBasket  extends HttpServlet{
 			System.err.println("Got an exception!!!");
 			System.err.println(e.getMessage());
 		}
-		PrintWriter writer = response.getWriter();
-		String item=request.getParameter("item");
-		basket basket=(basket) request.getSession().getAttribute("basket");
-		for(Pair<item, Integer> product : basket.retrieveBasket()) {
-			System.out.println(item);
-			String id=product.getItem().getId();
-			System.out.println("yessss");
-			if(id.equals(item)) {
-				System.out.println("yessss");
-				writer.write("	<td>"+product.getItem().getName()+"</td>\r\n" + 
-						"		<td>"+product.getItem().getPrice()+"</td>\r\n" + 
-						"		<td>"+product.getAmount()+"</td>\r\n" + 
-						"		<td class=\"buttons\">\r\n" + 
-						"		<a class=\"btn btn-outline-success\" onClick=\"removeFromBasketAjax("+product.getItem().getId()+")\">-</a> \r\n" + 
-						"		<a class=\"btn btn-outline-danger\" onClick=\"deleteFromBasketAjax("+product.getItem().getId()+")\">Delete</a>\r\n" + 
-						"		</td>");
-			
-			    break;
-			}
-		}
-		writer.close();
+		response.sendRedirect("/basket.do");
 	
 	}
 	

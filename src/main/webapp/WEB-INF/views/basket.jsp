@@ -1,24 +1,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script type="text/javascript">
-function removeFromBasketAjax(id){
-	var xmlhttp=new XMLHttpRequest();
-	xmlhttp.open("GET","\ remove-to-basket.do?item="+id,true);
-	xmlhttp.onload=function(event){
-		document.getElementById(id).innerHTML = xmlhttp.responseText;
 
-	}
-	xmlhttp.send();
-}
-function deleteFromBasketAjax(id){
-	var xmlhttp=new XMLHttpRequest();
-	xmlhttp.open("GET","\delete-to-basket.do?item="+id,true);
-	xmlhttp.onload=function(event){
-		document.getElementById(id).style.display = "none";
-	}
-	xmlhttp.send();
-}
-</script>
+
+
 <html>
 <head>
 <title>BestPc</title>
@@ -92,22 +76,22 @@ function deleteFromBasketAjax(id){
 								<td>${pair.item.price}</td>
 								<td>${pair.amount}</td>
 								<td class="buttons">
-									<a class="btn btn-outline-success" onClick="removeFromBasketAjax(${pair.item.id})">-</a> 
-									<a class="btn btn-outline-danger" onClick="deleteFromBasketAjax(${pair.item.id})">Delete</a>
+									<a class="btn btn-outline-success" href="/remove-to-basket.do?item=${pair.item.id}">-</a> 
+									<a class="btn btn-outline-danger" href="/delete-to-basket.do?item=${pair.item.id}">Delete</a>
 								</td>
 							</tr>
 							
 						</c:forEach>
 						<tr class="table-secondary">
 							<td>Total Cost - with out tax</td>
-							<td>${basket.getTotal()}</td>
+							<td id="total">${basket.getTotal()}</td>
 							<td></td>
 							<td></td>
 						</tr>
 
 						<tr class="table-secondary">
 							<td>Tax</td>
-							<td><fmt:formatNumber type="number" maxFractionDigits="2"
+							<td id="tax"><fmt:formatNumber type="number" maxFractionDigits="2"
 									value="${basket.getTotal()*basket.getTax()}" /></td>
 							<td></td>
 							<td></td>
@@ -117,7 +101,7 @@ function deleteFromBasketAjax(id){
 							<tr class="table-secondary">
 								<td>Discount</td>
 
-								<td>-<fmt:formatNumber type="number" maxFractionDigits="2"
+								<td id="discount">-<fmt:formatNumber type="number" maxFractionDigits="2"
 										value="${basket.getTotal()*(basket.getTax()+1)*(1-basket.getDiscount())}" /></td>
 								<td></td>
 								<td></td>
@@ -126,7 +110,7 @@ function deleteFromBasketAjax(id){
 							</tr>
 							<tr class="table-dark" style="color: red">
 								<td>Total Cost</td>
-								<td><fmt:formatNumber type="number" maxFractionDigits="2"
+								<td id="final"><fmt:formatNumber type="number" maxFractionDigits="2"
 										value="${basket.getTotal()*(basket.getTax()+1)*(basket.getDiscount())}" /></td>
 								<td></td>
 								<td></td>
