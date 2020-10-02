@@ -9,4 +9,4 @@ Also import the MySQLDataBase in a new database named "pc-web-database"
 
 ## More Info
 You can browse throw the ppt presentation for an installation guide 
-and the following video for a walk throw the site and the implementation.
+and the following video for a walk throw the site and the implementation https://www.youtube.com/watch?v=pYHObmY_Ma8 
