@@ -3,7 +3,7 @@
 ## This is web app project for an E-shop
 ### Implemented with Servlets, JSP, JS and an MySQL DataBase
 
-##Download
+## Download
 You can clone the project and imported as a Maven project in Eclipse.
 Also import the MySQLDataBase in a new database named "pc-web-database"
 
